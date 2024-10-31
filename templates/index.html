@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lá số tử vi</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css"/>
+    <script href="/static/client.js"></script>
+</head>
+
+<body>
+
+<div class="masthead">
+    <div class="container">
+        <h1 class="wordmark">
+            Chương trình lập lá số tử vi
+        </h1>
+        <div class="formborder">
+            <form method="post" action="/create_post">
+                <div class="grid thongtin">
+                    <div class="col col-3">
+                        Họ tên
+                    </div>
+                    <div class="col col-9">
+                        <input type="text" name="hoten" id="hoten">
+                    </div>
+                </div>
+                <div class="grid thongtin">
+                    <div class="col col-3">
+                        Giới tính
+                    </div>
+                    <div class="col col-9">
+                        <select name="gioitinh" id="gioitinh">
+                            <option value="nam">Nam</option>
+                            <option value="nu">Nữ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid thongtin">
+                    <div class="col col-3">
+                        Ngày tháng năm sinh
+                    </div>
+                    <div class="col col-5">
+                        <select name="ngaysinh" id="ngaysinh">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select> /
+                        <select name="thangsinh" id="thangsinh">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select> /
+                        <input type="text" id="namsinh" name="namsinh" placeholder="Năm sinh">
+                    </div>
+
+                    <div class="col col-4">
+                        Âm lịch?
+                        <input type="checkbox" name="amlich">
+                    </div>
+                </div>
+                <div class="grid thongtin">
+                    <div class="col col-3">
+                        Giờ sinh
+                    </div>
+                    <div class="col col-3">
+                        <select name="giosinh" id="giosinh">
+                            <option selected="selected" value="1">Tí (23g - 1g)</option>
+                            <option value="2">Sửu (1g - 3g)</option>
+                            <option value="3">Dần (3g - 5g)</option>
+                            <option value="4">Mão (5g - 7g)</option>
+                            <option value="5">Thìn (7g - 9g)</option>
+                            <option value="6">Tị (9g - 11g)</option>
+                            <option value="7">Ngọ (11g - 13g)</option>
+                            <option value="8">Mùi (13g - 15g)</option>
+                            <option value="9">Thân (15g - 17g)</option>
+                            <option value="10">Dậu (17g - 19g)</option>
+                            <option value="11">Tuất (19g - 21g)</option>
+                            <option value="12">Hợi (21g - 23g)</option>
+                        </select>
+                    </div>
+                    <div class="col col-3">
+                        Múi giờ:
+                        <select name="muigio" id="muigio">
+                            <option value="-12">-12</option>
+                            <option value="-11">-11</option>
+                            <option value="-10">-10</option>
+                            <option value="-9">-9</option>
+                            <option value="-8">-8</option>
+                            <option value="-7">-7</option>
+                            <option value="-6">-6</option>
+                            <option value="-5">-5</option>
+                            <option value="-4">-4</option>
+                            <option value="-3">-3</option>
+                            <option value="-2">-2</option>
+                            <option value="-1">-1</option>
+                            <option value="0">0</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                            <option value="3">+3</option>
+                            <option value="4">+4</option>
+                            <option value="5">+5</option>
+                            <option value="6">+6</option>
+                            <option value="7" selected>+7 (Vietnam)</option>
+                            <option value="8">+8</option>
+                            <option value="9">+9</option>
+                            <option value="10">+10</option>
+                            <option value="11">+11</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid">
+                    <button type="submit" id="laplaso">Lập lá số</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
