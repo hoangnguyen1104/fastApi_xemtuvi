@@ -73,6 +73,7 @@ $(document).ready(function () {
             zt.show($('#tooltip'), true);
         }
         catch (error) {
+            console.log("error in lapLaSo lstv");
             baoLoi(error);
         }
     }
@@ -80,11 +81,12 @@ $(document).ready(function () {
         $("#laso").removeClass("anlaso");
         $("#urlLaso").val("");
         $.ajax({
-            url: 'api',
-            type: 'GET',
+            url: '/doclaso',
+            type: 'post',
             dataType: 'json',
             data: $('form#lstv').serialize(),
             success: function (thienBandiaBan) {
+                console.log("okkk");
                 lapLaSo(thienBandiaBan);
                 console.log(thienBandiaBan);
             },

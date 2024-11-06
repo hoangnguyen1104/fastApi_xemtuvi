@@ -1,5 +1,16 @@
 from pydantic import BaseModel
 
+class InputData(BaseModel):
+    hoten: str
+    gioitinh: str
+    ngaysinh: int
+    thangsinh: int
+    namsinh: int
+    giosinh: int
+    muigio: int
+
+
+
 class TodoBase(BaseModel):
     title : str
     description : str | None = None

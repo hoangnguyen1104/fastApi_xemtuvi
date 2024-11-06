@@ -41,14 +41,18 @@ padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){va
     $("#thienBan").click(function () {
         $("[cung-id]").removeClass("xungChieu");
     });
-    function lapLaSo(laso) {
+    function lapLaSo(lasoStr) {
         try {
+            var laso = JSON.parse(lasoStr);
             $.templates({
                 cungDiaBan: "#cungDiaBan",
                 vungThienBan: "#vungThienBan"
             });
+            console.log(laso, typeof laso);
             var tb = laso['thienBan'];
             var data = laso['thapNhiCung'];
+            console.log($.templates.vungThienBan);
+            console.log(tb);
             var thienBan = $.templates.vungThienBan.render(tb);
             $("#thienBan").html(thienBan);
             var cungTy1 = $.templates.cungDiaBan.render(data[1]);
@@ -82,6 +86,7 @@ padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){va
             zt.show($('#tooltip'), true);
         }
         catch (error) {
+            console.log("error in lapLaSo client");
             baoLoi(error);
         }
     }
@@ -89,8 +94,8 @@ padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){va
         $("#laso").removeClass("anlaso");
         $("#urlLaso").val("");
         $.ajax({
-            url: 'api',
-            type: 'GET',
+            url: '/doclaso',
+            type: 'post',
             dataType: 'json',
             data: $('form#lstv').serialize(),
             success: function (thienBandiaBan) {

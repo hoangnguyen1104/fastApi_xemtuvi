@@ -6,7 +6,12 @@
     <title>Lá số tử vi</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css"/>
-    <script href="/static/client.js"></script>
+    <script src="/static/client.js"></script>
+<!--    <script src="/static/html2canvas.js"></script>-->
+<!--    <script src="/static/jquery.min.js"></script>-->
+<!--    <script src="/static/jsrender.min.js"></script>-->
+<!--    <script src="/static/lstv.js"></script>-->
+<!--    <script src="/static/zebra_tooltips.js"></script>-->
 </head>
 
 <body>
@@ -17,7 +22,7 @@
             Chương trình lập lá số tử vi
         </h1>
         <div class="formborder">
-            <form method="post" action="/create_post">
+            <form id="lstv">
                 <div class="grid thongtin">
                     <div class="col col-3">
                         Họ tên
@@ -148,12 +153,182 @@
                     </div>
                 </div>
                 <div class="grid">
-                    <button type="submit" id="laplaso">Lập lá số</button>
+                    <input type="button" class="button primary" value="Lập lá số" id="laplaso">
                 </div>
             </form>
         </div>
     </div>
 </div>
+<div class="anlaso laso border" id="laso">
+    <div class="grid">
+        <div class="col col-3">
+            <div class="container">
+                <div class="grid diaCung border-bottom" cung-id="6" id="cungTy5">Tỵ</div>
+                <div class="grid diaCung border-bottom" cung-id="5" id="cungThin">Thìn</div>
+                <div class="grid diaCung border-bottom inset-border" cung-id="4" id="cungMao">Mão</div>
+                <div class="grid diaCung" cung-id="3" id="cungDan">Dần</div>
+            </div>
+        </div>
+        <div class="col col-6">
+            <div class="container">
+                <div class="grid">
+                    <div class="col col-6 diaCung border-left" cung-id="7" id="cungNgo">Ngọ</div>
+                    <div class="col col-6 diaCung border-left" cung-id="8" id="cungMui">Mùi</div>
+                </div>
+
+                <div class="grid thienBan border-top border-left border-bottom border-right" id="thienBan">
+
+                </div>
+                <div class="grid">
+                    <div class="col col-6 diaCung border-left" cung-id="2" id="cungSuu">
+                        Sửu
+                    </div>
+                    <div class="col col-6 diaCung border-left" cung-id="1" id="cungTy1">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-3">
+            <div class="container">
+                <div class="grid diaCung border-left border-bottom" cung-id="9" id="cungThan">Thân</div>
+                <div class="grid diaCung border-bottom" cung-id="10" id="cungDau">Dậu</div>
+                <div class="grid diaCung border-bottom" cung-id="11" id="cungTuat">Tuất</div>
+                <div class="grid diaCung border-left" cung-id="12" id="cungHoi">Hợi</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% raw %}
+<script id="cungDiaBan" type="text/x-jsrender">
+    <div class="grid cung-top">
+        <div class="col col-2 tooltips" title="Địa chi cung {{:cungTen}}">{{:cungTen}}</div>
+        <div class="col col-8">
+            <span class="cungChu">
+            {{:cungChu}}
+        </span> {{if cungThan == true}}
+            <span class="cungThan label">Thân</span> {{/if}}
+        </div>
+        <div class="col col-2 tooltips" title="Đại hạn {{:cungDaiHan}} - {{:(cungDaiHan+9)}}">{{:cungDaiHan}}</div>
+    </div>
+    <div class="grid cung-middle">
+        <div class="chinhTinh">
+            {{for cungSao}} {{if saoLoai == 1}}
+            <li class="{{:cssSao}}">{{:saoTen}} {{if saoDacTinh !== null}} ({{:saoDacTinh}}) {{/if}}
+            </li>
+            {{/if}} {{/for}}
+        </div>
+
+        <div class="phuTinh">
+            <div class="saotot">
+                {{for cungSao}} {{if vongTrangSinh === 0 && saoLoai !==1 && saoLoai
+                < 10}} <div class="grid">
+                    <div class="col {{:cssSao}}">
+                        {{:saoTen}} {{if saoDacTinh !== null}} ({{:saoDacTinh}}) {{/if}}
+                    </div>
+            </div>
+            {{/if}} {{/for}}
+        </div>
+        <div class="saoxau">
+            {{for cungSao}} {{if vongTrangSinh === 0 && saoLoai !==1 && saoLoai > 10}}
+            <div class="grid">
+                <div class="{{:cssSao}}">
+                    {{:saoTen}} {{if saoDacTinh !== null}} ({{:saoDacTinh}}) {{/if}}
+                </div>
+            </div>
+            {{/if}} {{/for}}
+        </div>
+        <div class="tuanTriet">
+            {{if trietLo == true}}
+            <span class="label label-triet">Triệt</span> {{/if}} {{if tuanTrung == true}}
+            <span class="label label-tuan">Tuần</span> {{/if}}
+
+        </div>
+    </div>
+    </div>
+    <div class="grid cung-bottom">
+        <div class="col col-3 tooltips" title="Tiểu hạn của năm {{:cungTieuHan}}">{{:cungTieuHan}}</div>
+        {{for cungSao}} {{if vongTrangSinh == 1}}
+        <div class="col col-6 {{:cssSao}}">
+            {{:saoTen}}
+        </div>
+        {{/if}} {{/for}}
+        <div class="col col-3 tooltips" title="Cung ({{if cungAmDuong == -1}}âm{{else}}dương{{/if}}), ngũ hành {{:hanhCung}}">
+            {{if cungAmDuong == -1}}-{{else}}+{{/if}}{{:hanhCung}}
+        </div>
+    </div>
+</script>
+
+<script id="vungThienBan" type="text/x-jsrender">
+    <div class="noidung">
+        <div class="header">Ngày xem: {{:today}}</div>
+        <div class="grid">
+            <div class="col col-3 cotTrai">Họ tên</div>
+            <div class="col col-9 cotPhai">{{:ten}}</div>
+        </div>
+
+        <div class="grid">
+            <div class="col col-3 cotTrai">Bát tự</div>
+            <div class="col col-9 cotPhai">Năm {{:canNamTen}} {{:chiNamTen}}, tháng {{:canThang}} {{:chiThang}} {{if thangNhuan == 1}} (nhuận) {{/if}}, ngày {{:canNgay}} {{:chiNgay}}, giờ {{:gioSinh}}</div>
+        </div>
+
+        <div class="grid">
+            <div class="col col-3 cotTrai">Tuổi</div>
+            <div class="col col-9 cotPhai">{{:amDuongNamSinh}} {{:namNu}} ({{:amDuongMenh}})</div>
+        </div>
+
+        <div class="grid">
+            <div class="col col-3 cotTrai">Ngày sinh</div>
+            <div class="col col-9 cotPhai">
+                <div>{{:ngayAm}}/{{:thangAm}}/{{:canNamTen}} {{:chiNamTen}} (Âm lịch)</div>
+                <div>{{:ngayDuong}}/{{:thangDuong}}/{{:namDuong}} (Dương lịch)</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="col col-3 cotTrai">Bản mệnh</div>
+            <div class="col col-9 cotPhai">
+                {{:banMenh}}
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="col col-3 cotTrai">Cục</div>
+            <div class="col col-9 cotPhai">
+                {{:tenCuc}}
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="col col-3 cotTrai">Mệnh chủ</div>
+            <div class="col col-9 cotPhai">
+                {{:menhChu}}
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="col col-3 cotTrai">Thân chủ</div>
+            <div class="col col-9 cotPhai">
+                {{:thanChu}}
+            </div>
+        </div>
+
+        <div class="grid sinhkhac">
+            {{:sinhKhac}}
+        </div>
+
+        <div class="mausac">
+            <div class="grid">
+                <span class="col col-2">Màu sắc</span>
+                <span class="col col-2 hanhKim gioithieuhanh">Kim</span>
+                <span class="col col-2 hanhThuy gioithieuhanh">Thủy</span>
+                <span class="col col-2 hanhHoa gioithieuhanh">Hỏa</span>
+                <span class="col col-2 hanhTho gioithieuhanh">Thổ</span>
+                <span class="col col-2 hanhMoc gioithieuhanh">Mộc</span>
+            </div>
+        </div>
+</script>
+{% endraw %}
 </body>
 
 </html>
